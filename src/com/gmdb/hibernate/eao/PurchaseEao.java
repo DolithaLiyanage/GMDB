@@ -15,4 +15,5 @@ import com.gmdb.hibernate.entity.Purchase;
  */
 public interface PurchaseEao {
      void create(Purchase user);
+     void seveOrUpdate(Purchase purchase);
 }

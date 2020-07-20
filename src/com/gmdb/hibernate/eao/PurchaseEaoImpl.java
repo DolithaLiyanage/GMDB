@@ -33,10 +33,25 @@ public class PurchaseEaoImpl implements PurchaseEao{
         session.beginTransaction();
         
         
-        session.save(purchase);
+        session.persist(purchase);
         
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public void seveOrUpdate(Purchase purchase) {
+        
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        
+        
+        session.saveOrUpdate(purchase);
+        
+        session.getTransaction().commit();
+        session.close();
+    }
+         
+    }
     
-}
+

@@ -42,8 +42,13 @@ public class UserEaoImpl implements UserEao{
     }
 
     @Override
-    public User getUser(String userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public User getUser(int userId) {
+        
+        Session session = sessionFactory.openSession();
+        User user = (User) session.get(User.class, userId);
+        session.close();
+        return user;
+    
     }
     
 }

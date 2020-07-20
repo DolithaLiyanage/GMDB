@@ -15,6 +15,6 @@ public interface UserEao {
     
     void create(User user);
     
-    User getUser(String userId);
+    User getUser(int userId);
     
 }
