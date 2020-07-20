@@ -5,10 +5,14 @@
  */
 package com.gmdb.hibernate.eao;
 
+import com.gmdb.hibernate.entity.Purchase;
+
+
+
 /**
  *
  * @author pc
  */
 public interface PurchaseEao {
-    
+     void create(Purchase user);
 }

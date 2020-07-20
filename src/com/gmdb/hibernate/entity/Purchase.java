@@ -8,6 +8,7 @@ package com.gmdb.hibernate.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -69,7 +70,7 @@ public class Purchase {
         this.movies = movies;
     }
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
     public User getUser() {
         return user;

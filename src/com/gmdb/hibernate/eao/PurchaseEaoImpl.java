@@ -6,7 +6,8 @@
 package com.gmdb.hibernate.eao;
 
 import com.gmdb.hibernate.entity.BaseEntity;
-import com.gmdb.hibernate.entity.User;
+import com.gmdb.hibernate.entity.Purchase;
+
 import com.gmdb.hibernate.util.HibernateUtil;
 import java.util.Date;
 import org.hibernate.Session;
@@ -16,34 +17,26 @@ import org.hibernate.SessionFactory;
  *
  * @author pc
  */
-public class UserEaoImpl implements UserEao{
+public class PurchaseEaoImpl implements PurchaseEao{
     
     SessionFactory sessionFactory;
     
-    public UserEaoImpl(){
+    public PurchaseEaoImpl(){
         sessionFactory = HibernateUtil.getSessionFactory();
     
     }
 
     @Override
-    public void create(User user) {
+    public void create(Purchase purchase) {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        BaseEntity baseEntity = new BaseEntity();
-        baseEntity.setCreatedBy("user");
-        baseEntity.setCreatedDate(new Date());
-        user.setBaseEntity(baseEntity);
         
-        session.save(user);
+        
+        session.save(purchase);
         
         session.getTransaction().commit();
         session.close();
-    }
-
-    @Override
-    public User getUser(String userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
