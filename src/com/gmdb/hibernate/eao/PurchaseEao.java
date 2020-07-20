@@ -6,6 +6,7 @@
 package com.gmdb.hibernate.eao;
 
 import com.gmdb.hibernate.entity.Purchase;
+import java.util.List;
 
 
 
@@ -16,4 +17,5 @@ import com.gmdb.hibernate.entity.Purchase;
 public interface PurchaseEao {
      void create(Purchase user);
      void seveOrUpdate(Purchase purchase);
+     List<Purchase> getPurchasebyUser(int userId);
 }

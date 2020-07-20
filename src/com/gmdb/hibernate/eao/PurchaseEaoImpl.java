@@ -10,6 +10,8 @@ import com.gmdb.hibernate.entity.Purchase;
 
 import com.gmdb.hibernate.util.HibernateUtil;
 import java.util.Date;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -50,6 +52,21 @@ public class PurchaseEaoImpl implements PurchaseEao{
         
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public List<Purchase> getPurchasebyUser(int userId) {
+
+        String hql = "FROM Purchase p Where p.user.userId = :user_Id";
+        Session session = sessionFactory.openSession();
+        
+        Query query = session.createQuery(hql);
+        query.setParameter("user_id", userId);
+        
+        List<Purchase> purchases = query.list();
+        session.close();
+        return purchases;
+        
     }
          
     }

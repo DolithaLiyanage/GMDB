@@ -12,6 +12,7 @@ import com.gmdb.hibernate.eao.UserEaoImpl;
 import com.gmdb.hibernate.entity.Purchase;
 import com.gmdb.hibernate.entity.User;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -44,9 +45,37 @@ public class Main {
         
         purchaseEao.seveOrUpdate(purchase2);
         purchaseEao.seveOrUpdate(purchase3);
+        
+        User user2 = new User("Gayan","gayan@gmail.com","gayan123");
+        
+        Purchase purchase4 = new Purchase();
+        purchase4.setPurchaseDate(new Date()); 
+        Purchase purchase5 = new Purchase();
+        purchase5.setPurchaseDate(new Date());
+        
+        purchase4.setUser(user2);
+        purchase5.setUser(user2);
+        
+        user2.getPurchases().add(purchase4);
+        user2.getPurchases().add(purchase5);
+        
+        userEao.create(user2);
+        
+        User dispUser = userEao.getUser(1);
+        System.out.println(dispUser.getUserId()+" - " +dispUser.getUser_name());
+        
+        List<Purchase> purchases = dispUser.getPurchases();
+        
+        for (Purchase p: purchases){
+        
+            System.out.println(p.getPurchaseId()+ " - "+p.getPurchaseDate());
+        }
 
         
-        
+        List<Purchase> purchasesOfUsers = purchaseEao.getPurchasebyUser(1);
+        for(Purchase p : purchasesOfUsers){
+            System.out.println(p.getPurchaseId()+" - "+p.getPurchaseDate());
+        }
     }
     
 }

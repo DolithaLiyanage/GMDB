@@ -35,7 +35,7 @@ public class UserEaoImpl implements UserEao{
         baseEntity.setCreatedDate(new Date());
         user.setBaseEntity(baseEntity);
         
-        session.save(user);
+        session.persist(user);
         
         session.getTransaction().commit();
         session.close();
