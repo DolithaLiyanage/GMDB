@@ -5,12 +5,16 @@
  */
 package com.gmdb.hibernate.client;
 
+import com.gmdb.hibernate.eao.MovieEao;
+import com.gmdb.hibernate.eao.MovieEaoImpl;
 import com.gmdb.hibernate.eao.PurchaseEao;
 import com.gmdb.hibernate.eao.PurchaseEaoImpl;
 import com.gmdb.hibernate.eao.UserEao;
 import com.gmdb.hibernate.eao.UserEaoImpl;
+import com.gmdb.hibernate.entity.Movie;
 import com.gmdb.hibernate.entity.Purchase;
 import com.gmdb.hibernate.entity.User;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,13 +28,25 @@ public class Main {
     
         PurchaseEao purchaseEao = new PurchaseEaoImpl();
         UserEao userEao = new UserEaoImpl();
+        MovieEao movieEao = new MovieEaoImpl();
+        
+        List<Movie> mov = new ArrayList<>();
+        
+        Movie movie1 = new Movie("Avengers","3 hrs 5 min");
+        Movie movie2 = new Movie("Up","2 hrs 25 min");
+        Movie movie3 = new Movie("Mad Max","2 hrs 5 min");
         
         User user1 = new User("Dolitha", "gliyyanage221@gmail.com", "app");
         Purchase purchase1 = new Purchase();
         purchase1.setPurchaseDate(new Date());
         
-        purchase1.setUser(user1);
+        mov.add(movie1);
+        mov.add(movie2);
         
+        purchase1.setMovies(mov);
+        
+        userEao.create(user1);
+        movieEao.create(movie3);
         purchaseEao.create(purchase1);
         
         Purchase purchase2 = new Purchase();
@@ -40,11 +56,16 @@ public class Main {
         
         User auser = userEao.getUser(1);
         
+       
+        
         purchase2.setUser(auser);
         purchase3.setUser(auser);
         
+        
+        
         purchaseEao.seveOrUpdate(purchase2);
         purchaseEao.seveOrUpdate(purchase3);
+        movieEao.seveOrUpdate(movie1);
         
         User user2 = new User("Gayan","gayan@gmail.com","gayan123");
         

@@ -7,8 +7,10 @@ package com.gmdb.hibernate.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,15 +35,11 @@ public class Movie {
     private float rating;
     private BaseEntity baseEntity;
     private List<Purchase> purchases;
-    private List<Actor> actors;
-    private List<Director> directors;
     private List<Genre> genres;
 
     public Movie() {
         
         purchases = new ArrayList<>();
-        actors = new ArrayList<>();
-        directors = new ArrayList<>();
         genres = new ArrayList<>();
     }
     public Movie(String movieName, String runTime) {
@@ -49,8 +47,6 @@ public class Movie {
         this.runTime = runTime;
         purchases = new ArrayList<>();
         purchases = new ArrayList<>();
-        actors = new ArrayList<>();
-        directors = new ArrayList<>();
         genres = new ArrayList<>();
     }
 
@@ -98,7 +94,7 @@ public class Movie {
         this.baseEntity = baseEntity;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "GMDB_MOVIE_PURCHASE_TAB",
             joinColumns = {@JoinColumn(name = "movieId")},
             inverseJoinColumns = {@JoinColumn(name = "purchaseId")})
@@ -110,31 +106,7 @@ public class Movie {
         this.purchases = purchases;
     }
 
-     @ManyToMany
-    @JoinTable(name = "GMDB_MOVIE_ACTOR_TAB",
-                joinColumns = {@JoinColumn(name="movieId")},
-                inverseJoinColumns = {@JoinColumn(name = "actorId")})
-    
-    public List<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "GMDB_MOVIE_DIRECTOR_TAB",
-                joinColumns = {@JoinColumn(name="movieId")},
-                inverseJoinColumns = {@JoinColumn(name = "directorId")})
-    public List<Director> getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(List<Director> directors) {
-        this.directors = directors;
-    }
-
+     
     @ManyToMany
     @JoinTable(name = "GMDB_MOVIE_GENRE_TAB",
                 joinColumns = {@JoinColumn(name="movieId")},
