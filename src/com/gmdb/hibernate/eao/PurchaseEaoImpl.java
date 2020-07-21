@@ -61,7 +61,7 @@ public class PurchaseEaoImpl implements PurchaseEao{
         Session session = sessionFactory.openSession();
         
         Query query = session.createQuery(hql);
-        query.setParameter("user_id", userId);
+        query.setParameter("user_Id", userId);
         
         List<Purchase> purchases = query.list();
         session.close();

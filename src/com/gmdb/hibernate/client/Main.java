@@ -72,7 +72,7 @@ public class Main {
         }
 
         
-        List<Purchase> purchasesOfUsers = purchaseEao.getPurchasebyUser(1);
+        List<Purchase> purchasesOfUsers = purchaseEao.getPurchasebyUser(2);
         for(Purchase p : purchasesOfUsers){
             System.out.println(p.getPurchaseId()+" - "+p.getPurchaseDate());
         }
