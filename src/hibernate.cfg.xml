@@ -15,8 +15,6 @@
     <mapping class = "com.gmdb.hibernate.entity.Purchase"/>
     <mapping class = "com.gmdb.hibernate.entity.User"/>
     <mapping class = "com.gmdb.hibernate.entity.Review"/>
-    <mapping class = "com.gmdb.hibernate.entity.Director"/>
-    <mapping class = "com.gmdb.hibernate.entity.Actor"/>
     <mapping class = "com.gmdb.hibernate.entity.Genre"/>
 
 

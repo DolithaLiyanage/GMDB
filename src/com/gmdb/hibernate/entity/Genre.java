@@ -6,7 +6,9 @@
 package com.gmdb.hibernate.entity;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +54,7 @@ public class Genre {
         this.genreName = genreName;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "GMDB_MOVIE_GENRE_TAB",
                 joinColumns = {@JoinColumn(name="genreId")},
                 inverseJoinColumns = {@JoinColumn(name = "movieId")})

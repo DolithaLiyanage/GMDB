@@ -107,7 +107,7 @@ public class Movie {
     }
 
      
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "GMDB_MOVIE_GENRE_TAB",
                 joinColumns = {@JoinColumn(name="movieId")},
                 inverseJoinColumns = {@JoinColumn(name = "genreId")})

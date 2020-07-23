@@ -5,12 +5,15 @@
  */
 package com.gmdb.hibernate.client;
 
+import com.gmdb.hibernate.eao.GenreEao;
+import com.gmdb.hibernate.eao.GenreEaoImpl;
 import com.gmdb.hibernate.eao.MovieEao;
 import com.gmdb.hibernate.eao.MovieEaoImpl;
 import com.gmdb.hibernate.eao.PurchaseEao;
 import com.gmdb.hibernate.eao.PurchaseEaoImpl;
 import com.gmdb.hibernate.eao.UserEao;
 import com.gmdb.hibernate.eao.UserEaoImpl;
+import com.gmdb.hibernate.entity.Genre;
 import com.gmdb.hibernate.entity.Movie;
 import com.gmdb.hibernate.entity.Purchase;
 import com.gmdb.hibernate.entity.User;
@@ -29,25 +32,51 @@ public class Main {
         PurchaseEao purchaseEao = new PurchaseEaoImpl();
         UserEao userEao = new UserEaoImpl();
         MovieEao movieEao = new MovieEaoImpl();
+        GenreEao genreEao = new GenreEaoImpl();
+
         
         List<Movie> mov = new ArrayList<>();
+        List<Genre> gen1 = new ArrayList<>();
+        List<Genre> gen2 = new ArrayList<>();
+        
         
         Movie movie1 = new Movie("Avengers","3 hrs 5 min");
         Movie movie2 = new Movie("Up","2 hrs 25 min");
         Movie movie3 = new Movie("Mad Max","2 hrs 5 min");
         
+        Genre genre1 = new Genre("Action");
+        Genre genre2 = new Genre("Drama");
+        Genre genre3 = new Genre("Animation");
+        
+        
         User user1 = new User("Dolitha", "gliyyanage221@gmail.com", "app");
         Purchase purchase1 = new Purchase();
-        purchase1.setPurchaseDate(new Date());
-        
+        purchase1.setPurchaseDate(new Date());        
+         
         mov.add(movie1);
         mov.add(movie2);
         
-        purchase1.setMovies(mov);
+        gen1.add(genre1);
+        gen1.add(genre2);
+        
+        gen2.add(genre1);       
+        gen2.add(genre3);
+        
+        
+        //purchase1.setMovies(mov);
         
         userEao.create(user1);
-        movieEao.create(movie3);
-        purchaseEao.create(purchase1);
+        //purchaseEao.create(purchase1);
+        
+      movie1.setGenres(gen2);
+      movie3.setGenres(gen1);
+        //movie2.setGenres(gen2);
+        
+        movieEao.create(movie1);
+        movieEao.create(movie2);
+      //  movieEao.create(movie3);*/
+
+        
         
         Purchase purchase2 = new Purchase();
         purchase2.setPurchaseDate(new Date()); 
