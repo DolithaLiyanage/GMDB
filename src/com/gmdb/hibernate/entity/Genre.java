@@ -54,7 +54,7 @@ public class Genre {
         this.genreName = genreName;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name = "GMDB_MOVIE_GENRE_TAB",
                 joinColumns = {@JoinColumn(name="genreId")},
                 inverseJoinColumns = {@JoinColumn(name = "movieId")})

@@ -34,7 +34,7 @@ public class Purchase {
     private Date purchaseDate;
     private List<Movie> movies;
     private User user;
-    private Review review;
+    private List<Review> reviews;
 
     public Purchase() {
         
@@ -80,16 +80,16 @@ public class Purchase {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @OneToOne
-    @JoinColumn(name = "REVIEW_ID")
-    public Review getReview() {
-        return review;
+    @OneToMany(mappedBy = "purchase", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    public List<Review> getReviews() {
+        return reviews;
     }
 
-    public void setReview(Review review) {
-        this.review = review;
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
+
+    
     
     
     

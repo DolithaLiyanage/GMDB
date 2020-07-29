@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -36,6 +37,7 @@ public class Movie {
     private BaseEntity baseEntity;
     private List<Purchase> purchases;
     private List<Genre> genres;
+    private List<Review> reviews;
 
     public Movie() {
         
@@ -107,7 +109,7 @@ public class Movie {
     }
 
      
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinTable(name = "GMDB_MOVIE_GENRE_TAB",
                 joinColumns = {@JoinColumn(name="movieId")},
                 inverseJoinColumns = {@JoinColumn(name = "genreId")})
@@ -117,6 +119,15 @@ public class Movie {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+    
+    @OneToMany(mappedBy ="movie", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
     
     

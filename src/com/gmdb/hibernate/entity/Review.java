@@ -5,11 +5,13 @@
  */
 package com.gmdb.hibernate.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +26,7 @@ public class Review {
     private String reviewDescription;
     private int rating;
     private Purchase purchase;
+    private Movie movie;
 
     public Review() {
     }
@@ -59,7 +62,7 @@ public class Review {
         this.rating = rating;
     }
 
-    @OneToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "PURCHASE_ID")
     public Purchase getPurchase() {
         return purchase;
@@ -67,6 +70,16 @@ public class Review {
 
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
+    }
+    
+    @ManyToOne (cascade = CascadeType.PERSIST)
+        @JoinColumn(name = "MOVIE_ID")
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
     
     

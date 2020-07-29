@@ -5,20 +5,20 @@
  */
 package com.gmdb.hibernate.eao;
 
+import com.gmdb.hibernate.entity.Movie;
 import com.gmdb.hibernate.entity.Purchase;
-import com.gmdb.hibernate.entity.User;
+import com.gmdb.hibernate.entity.Review;
 import java.util.List;
-
-
 
 /**
  *
  * @author pc
  */
-public interface PurchaseEao {
-     void create(Purchase purchase);
-     void seveOrUpdate(Purchase purchase);
-     List<Purchase> getPurchasebyUser(int userId);
-     List<Purchase> getPurchasebyMovie(int movieId);
+public interface ReviewEao {
+    void create(Review review);
+     void seveOrUpdate(Review review);
+     List<Review> getReviewbyPurchase(int reviewId);
+     List<Review> getReviewbyMovie(int movieId);
      Purchase getPurchase(int purchaseId);
+     Movie getMovie(int movieId);
 }
